@@ -3,19 +3,15 @@ using campusfix.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<campusfix.Data.CampusFixContext>(options =>
+builder.Services.AddDbContext<CampusFixContext>(options =>
     options.UseSqlite("Data Source=campusfix.db"));
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();
 
-// Admin login session
 builder.Services.AddSession();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -26,7 +22,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseRouting();
 
-// Enable sessions
 app.UseSession();
 
 app.UseAuthorization();
@@ -37,5 +32,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<CampusFixContext>();
+    db.Database.Migrate();
+}
 app.Run();
