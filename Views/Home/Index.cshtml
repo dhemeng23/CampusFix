@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="campus-hero">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <div class="ug-badge">
+            <span>UG</span>
+        </div>
+
+        <p class="hero-label">UNIVERSITY OF GHANA</p>
+
+        <h1>CAMPUSFIX</h1>
+
+        <p class="hero-subtitle">
+            Report Campus Issues Fast
+        </p>
+
+        <p class="hero-description">
+            Help make campus better by reporting problems,
+            tracking issues and keeping the University community informed.
+        </p>
+
+        <a asp-controller="Home"
+           asp-action="Report"
+           class="report-button">
+            REPORT AN ISSUE
+            <span>→</span>
+        </a>
+    </div>
+</div>
+
+<section class="home-info">
+    <div class="info-card">
+        <div class="info-icon">⚡</div>
+        <h3>Report Quickly</h3>
+        <p>
+            Submit campus issues in a few simple steps.
+        </p>
+    </div>
+
+    <div class="info-card">
+        <div class="info-icon">📍</div>
+        <h3>Campus Locations</h3>
+        <p>
+            Tell us exactly where the problem is.
+        </p>
+    </div>
+
+    <div class="info-card">
+        <div class="info-icon">✓</div>
+        <h3>Track Progress</h3>
+        <p>
+            See whether your reported issue is pending or resolved.
+        </p>
+    </div>
+</section>

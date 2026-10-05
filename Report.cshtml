@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Report an Issue";
+}
+
+<div class="container mt-5">
+    <h1>Report an Issue</h1>
+    <p>Tell us about a problem on campus.</p>
+
+    <form asp-action="Report" method="post">
+
+        <div class="mb-3">
+            <label for="Title" class="form-label">Issue Title</label>
+            <input type="text" class="form-control" id="Title" name="Title" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="Location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="Location" name="Location" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="Description" class="form-label">Description</label>
+            <textarea class="form-control" id="Description" name="Description" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Submit Report
+        </button>
+
+    </form>
+</div>

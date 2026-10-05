@@ -1,0 +1,102 @@
+@{
+    ViewData["Title"] = "Report an Issue";
+}
+
+<div class="report-page">
+
+    <div class="report-container">
+
+        <div class="report-header">
+
+            <div class="report-icon">
+                !
+            </div>
+
+            <div class="hero-label">CAMPUSFIX • UNIVERSITY OF GHANA</div>
+
+            <h1>REPORT AN ISSUE</h1>
+
+            <p>
+                Tell us about the problem you found on campus.
+                We'll make sure it gets to the right people.
+            </p>
+
+        </div>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="report-message">
+                @ViewBag.Message
+            </div>
+        }
+
+        <form method="post" class="report-form">
+
+            <div class="form-group">
+
+                <label for="Title">Issue Title</label>
+
+                <input
+                    id="Title"
+                    type="text"
+                    name="Title"
+                    placeholder="e.g. Broken Lecture Hall Light"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="Category">Category</label>
+
+                <select id="Category" name="Category" required>
+
+                    <option value="">Select a category</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Plumbing">Plumbing</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Internet">Internet</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="Infrastructure">Infrastructure</option>
+                    <option value="Other">Other</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="Location">Location</label>
+
+                <input
+                    id="Location"
+                    type="text"
+                    name="Location"
+                    placeholder="e.g. JQB Room 22"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="Description">Description</label>
+
+                <textarea
+                    id="Description"
+                    name="Description"
+                    placeholder="Describe the issue..."
+                    rows="5"
+                    required></textarea>
+
+            </div>
+
+            <button type="submit" class="submit-report">
+                SUBMIT REPORT
+                <span>→</span>
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

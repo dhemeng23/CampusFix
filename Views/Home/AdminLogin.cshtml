@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<div class="admin-login-page">
+
+    <div class="admin-login-card">
+
+        <div class="admin-login-icon">
+            UG
+        </div>
+
+        <span class="section-label">CAMPUSFIX</span>
+
+        <h1>Admin Login</h1>
+
+        <p>Sign in to manage reported campus issues.</p>
+
+        <form asp-action="AdminLogin" method="post">
+
+            <div class="login-field">
+                <label>Username</label>
+                <input type="text"
+                       name="username"
+                       placeholder="Enter admin username"
+                       required />
+            </div>
+
+            <div class="login-field">
+                <label>Password</label>
+                <input type="password"
+                       name="password"
+                       placeholder="Enter password"
+                       required />
+            </div>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="login-error">
+                    @ViewBag.Error
+                </div>
+            }
+
+            <button type="submit" class="admin-login-btn">
+                Sign In →
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

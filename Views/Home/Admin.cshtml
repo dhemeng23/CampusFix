@@ -1,0 +1,153 @@
+@model IEnumerable<campusfix.Models.Issue>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+
+    var total = Model.Count();
+    var pending = Model.Count(i => i.Status == "Pending");
+    var inProgress = Model.Count(i => i.Status == "In Progress");
+    var resolved = Model.Count(i => i.Status == "Resolved");
+}
+
+<div class="admin-page">
+
+    <!-- ADMIN HEADER -->
+    <div class="admin-header">
+        <div>
+            <span class="section-label">CAMPUSFIX</span>
+            <h1>Admin Dashboard</h1>
+            <p>Manage and monitor reported campus issues.</p>
+        </div>
+
+        <a asp-controller="Home"
+           asp-action="Reports"
+           class="admin-btn">
+            View Reports →
+        </a>
+    </div>
+
+
+    <!-- STATISTICS -->
+    <div class="admin-stats">
+
+        <div class="admin-stat">
+            <div class="stat-icon">!</div>
+            <div>
+                <span>Total Reports</span>
+                <strong>@total</strong>
+            </div>
+        </div>
+
+        <div class="admin-stat">
+            <div class="stat-icon pending-icon">◷</div>
+            <div>
+                <span>Pending</span>
+                <strong>@pending</strong>
+            </div>
+        </div>
+
+        <div class="admin-stat">
+            <div class="stat-icon progress-icon">↻</div>
+            <div>
+                <span>In Progress</span>
+                <strong>@inProgress</strong>
+            </div>
+        </div>
+
+        <div class="admin-stat">
+            <div class="stat-icon resolved-icon">✓</div>
+            <div>
+                <span>Resolved</span>
+                <strong>@resolved</strong>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- REPORT MANAGEMENT -->
+    <div class="admin-section">
+
+        <div class="admin-section-header">
+            <div>
+                <span class="section-label">ISSUE MANAGEMENT</span>
+                <h2>Recent Reports</h2>
+            </div>
+
+            <span class="report-count">
+                @total report@(total == 1 ? "" : "s")
+            </span>
+        </div>
+
+
+        @if (!Model.Any())
+        {
+            <div class="empty-state">
+                <h3>No reports yet</h3>
+                <p>Reported campus issues will appear here.</p>
+            </div>
+        }
+        else
+        {
+            <div class="admin-table-wrapper">
+
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Issue</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var issue in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    #@issue.Id
+                                </td>
+
+                                <td>
+                                    <strong>@issue.Title</strong>
+                                </td>
+
+                                <td>
+                                    @issue.Location
+                                </td>
+
+                                <td>
+                                    <span class="status-badge @issue.Status.Replace(" ", "-").ToLower()">
+                                        @issue.Status
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <a asp-controller="Home"
+                                       asp-action="Manage"
+                                       asp-route-id="@issue.Id"
+                                       class="view-btn">
+                                        Manage →
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+
+    </div>
+
+</div>

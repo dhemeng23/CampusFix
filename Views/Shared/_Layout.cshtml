@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - CampusFix</title>
+
+    <script type="importmap"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/CampusFix.styles.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-sm campus-navbar">
+            <div class="container">
+
+                <!-- BRAND / LOGO -->
+                <a class="navbar-brand campus-brand"
+                   asp-area=""
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    <div class="ug-logo">
+                        <img src="~/images/ug-logo.png"
+                             alt="University of Ghana Logo" />
+                    </div>
+
+                    <div class="brand-text">
+                        <div class="brand-name">
+                            Campus<span>Fix</span>
+                        </div>
+
+                        <div class="brand-university">
+                            UNIVERSITY OF GHANA
+                        </div>
+                    </div>
+
+                </a>
+
+                <!-- MOBILE MENU BUTTON -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <!-- NAVIGATION -->
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Report">
+                                Report an Issue
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Reports">
+                                Campus Reports
+                            </a>
+                        </li>
+
+                        <!-- ADMIN LOGIN -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="AdminLogin">
+                                Admin
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Privacy">
+                                About
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+@model campusfix.Models.Issue
+
+@{
+    ViewData["Title"] = "Manage Report";
+}
+
+<div class="manage-page">
+
+    <div class="manage-header">
+        <div>
+            <span class="section-label">ADMIN / ISSUE MANAGEMENT</span>
+            <h1>Manage Report #@Model.Id</h1>
+            <p>Review and update this campus issue.</p>
+        </div>
+
+        <a asp-controller="Home"
+           asp-action="Admin"
+           class="admin-btn">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="manage-card">
+
+        <div class="manage-detail">
+            <span>ISSUE</span>
+            <h2>@Model.Title</h2>
+        </div>
+
+        <div class="manage-detail">
+            <span>LOCATION</span>
+            <p>@Model.Location</p>
+        </div>
+
+        <div class="manage-detail">
+            <span>DESCRIPTION</span>
+            <p>@Model.Description</p>
+        </div>
+
+        <div class="manage-detail">
+            <span>CURRENT STATUS</span>
+
+            <form asp-action="UpdateStatus"
+                  method="post"
+                  class="manage-status-form">
+
+                <input type="hidden"
+                       name="id"
+                       value="@Model.Id" />
+
+                <select name="status"
+                        class="manage-status-select">
+
+                    <option value="Pending"
+                            selected="@(Model.Status == "Pending" ? "selected" : null)">
+                        Pending
+                    </option>
+
+                    <option value="In Progress"
+                            selected="@(Model.Status == "In Progress" ? "selected" : null)">
+                        In Progress
+                    </option>
+
+                    <option value="Resolved"
+                            selected="@(Model.Status == "Resolved" ? "selected" : null)">
+                        Resolved
+                    </option>
+
+                </select>
+
+                <button type="submit" class="update-status-btn">
+                    Update Status
+                </button>
+
+            </form>
+        </div>
+
+        <div class="danger-zone">
+
+            <div>
+                <strong>Delete this report</strong>
+                <p>
+                    Permanently remove this report from CampusFix.
+                </p>
+            </div>
+
+            <form asp-action="DeleteReport"
+                  method="post"
+                  onsubmit="return confirm('Are you sure you want to permanently delete this report?');">
+
+                <input type="hidden"
+                       name="id"
+                       value="@Model.Id" />
+
+                <button type="submit" class="delete-report-btn">
+                    Delete Report
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
